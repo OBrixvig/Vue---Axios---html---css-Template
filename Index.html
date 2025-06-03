@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Axios CRUD Template</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="/CSS/Styles.css">
+</head>
+
+<body>
+    <div id="app">
+        <div class="container">
+            <h2>Liste over elementer</h2>
+            <ul class="item-list">
+                <li v-for="item in items" :key="item.id" class="item">
+                    {{ item.name }}
+                    <button @click="deleteItem(item.id)" class="delete-btn">Slet</button>
+                </li>
+            </ul>
+        </div>
+        <div class="container">
+            <h2>Opret nyt element</h2>
+            <div class="form-group">
+                <input v-model="newItem.name" placeholder="Navn" class="input-field">
+                <button @click="createItem" class="create-btn">Opret</button>
+            </div>
+        </div>
+        <div class="container" v-if="editingItem">
+            <h2>Rediger element</h2>
+            <div class="form-group">
+                <input v-model="editingItem.name" placeholder="Navn" class="input-field">
+                <button @click="updateItem" class="save-btn">Gem</button>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <button @click="fetchItems" class="fetch-btn">Hent elementer</button>
+    </div>
+    <script src="Main.js"></script>
+</body>
+
+</html>
